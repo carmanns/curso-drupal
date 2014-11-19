@@ -11,52 +11,11 @@
 function saludar_menu() {
 	// Ruta de la página de saludo.
 	$items['saludar/hola-mundo'] = array (
-		 'title' => 'Saludar',
-		 'page callback' => 'saludar_hola_mundo', //Función a ejecutar
-		 'access callback' => TRUE, // Acceso libre
+		'title' => 'Saludar',
+		'description' => 'Ruta principal del hola mundo',	
+		'page callback' => 'saludar_hola_mundo', //Función a ejecutar
+		'access callback' => TRUE, // Acceso libre
 	);
-	// Ruta configuración
-	$items['admin/config/content/saluda'] = array (
-		'title' => 'Saluda Config',
-		'description' => 'Opciones saludo',
-		'page callback' => 'drupal_get_form',
-		'page arguments' => array('saluda_config_form'),
-		'access arguments' => array('administer site configuration'),
-	);
- return $items;
-}
-
-/**
- * Function Controller saludar_hola_mundo
- */
-function saludar_hola_mundo() {
-	global $user;
-	$usuario = user_load($user->uid);
-	$fecha = time();
-	$variables = array (
-		'saludo' => variable_get('saludo', 'Hola Mundo!'),
-		'fecha' => date('h:i:s', $fecha),
-		'usuario' => $usuario,
-	);
-	return theme('saludar_hola_mundo', $variables);
-}
-
-/**
- * Function Controller Configuration
- */
-function saluda_config_form() {  
-  $form['saludo'] = array (
-    '#title' => 'Saludo que se muestra al usuario',  
-    '#type' => 'textfield',
-    '#default_value' => variable_get('saludo', 'Hola Mundo!'),
-    '#required' => TRUE,
-  );
-  return system_settings_form($form);
-}
-
-function saludar_theme() {
-  $templates = array (
-		'saludar_hola_mundo' => array('template' => 'templates/saludar-hola-mundo',),
-  );
-  return $templates;
+	
+	return $items;
 }
