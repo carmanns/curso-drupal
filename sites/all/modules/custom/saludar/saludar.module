@@ -11,9 +11,10 @@
 function saludar_menu() {
 	// Ruta de la página de saludo.
 	$items['saludar/hola-mundo'] = array (
-		 'title' => 'Saludar',
-		 'page callback' => 'saludar_hola_mundo', //Función a ejecutar
-		 'access callback' => TRUE, // Acceso libre
+		'title' => 'Saludar',
+		'description' => 'Ruta principal del hola mundo',
+		'page callback' => 'saludar_hola_mundo', //Función a ejecutar
+		'access callback' => TRUE, // Acceso libre
 	);
 
  return $items;
