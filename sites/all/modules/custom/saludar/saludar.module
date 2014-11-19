@@ -11,10 +11,9 @@
 function saludar_menu() {
 	// Ruta de la página de saludo.
 	$items['saludar/hola-mundo'] = array (
-		'title' => 'Saludar',
-		'description' => 'Ruta principal del hola mundo',	
-		'page callback' => 'saludar_hola_mundo', //Función a ejecutar
-		'access callback' => TRUE, // Acceso libre
+		 'title' => 'Saludar',
+		 'page callback' => 'saludar_hola_mundo', //Función a ejecutar
+		 'access callback' => TRUE, // Acceso libre
 	);
 
  return $items;
@@ -33,4 +32,14 @@ function saludar_hola_mundo() {
 		'usuario' => $usuario,
 	);
 	return theme('saludar_hola_mundo', $variables);
+}
+
+/**
+ * Implements hook_theme()
+ */
+function saludar_theme() {
+  $templates = array (
+		'saludar_hola_mundo' => array('template' => 'templates/saludar-hola-mundo',),
+  );
+  return $templates;
 }
