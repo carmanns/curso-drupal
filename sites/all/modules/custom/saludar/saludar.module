@@ -44,7 +44,7 @@ function saludar_hola_mundo() {
 /**
  * Function Controller Configuration
  */
-function saluda_config_form() {
+function saludar_config_form() {
   $form['saludo'] = array (
     '#title' => 'Saludo que se muestra al usuario',
     '#type' => 'textfield',
@@ -59,4 +59,30 @@ function saludar_theme() {
 		'saludar_hola_mundo' => array('template' => 'templates/saludar-hola-mundo',),
   );
   return $templates;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function saludar_block_info() {
+  $blocks['hola_mundo'] = array(
+    'info' => 'Bloque para Hola Mundo',
+    'status' => TRUE,
+    'region' => 'sidebar_first',
+    'visibility'=> BLOCK_VISIBILITY_LISTED,
+    'pages' => 'node/*',
+  );
+  return $blocks;
+}
+
+/**
+ * Implementa hook_block_view().
+ * Retorna una vista renderizada de un bloque.
+ */
+function saludar_block_view($delta = '' ) {
+  switch ($delta) {
+    case 'hola_mundo':
+      $block['content'] = saludar_hola_mundo();
+      return $block;
+  }
 }
