@@ -16,8 +16,15 @@ function saludar_menu() {
 		'page callback' => 'saludar_hola_mundo', //Función a ejecutar
 		'access callback' => TRUE, // Acceso libre
 	);
-
- return $items;
+	// Ruta configuración
+	$items['admin/config/content/saluda'] = array (
+		'title' => 'Saluda Config',
+		'description' => 'Opciones saludo',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('saluda_config_form'),
+		'access arguments' => array('administer site configuration'),
+	);
+	return $items;
 }
 
 /**
