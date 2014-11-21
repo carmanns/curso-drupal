@@ -20,7 +20,7 @@ function saludar_menu() {
 		'title' => 'Saluda Config',
 		'description' => 'Opciones saludo',
 		'page callback' => 'drupal_get_form',
-		'page arguments' => array('saluda_config_form'),
+		'page arguments' => array('saludar_config_form'),
 		'access arguments' => array('administer site configuration'),
 	);
   return $items;
