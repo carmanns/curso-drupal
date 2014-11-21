@@ -25,11 +25,12 @@ function saludar_menu() {
  */
 function saludar_hola_mundo() {
 	global $user;
+	$usuario = user_load($user->uid);
 	$fecha = time();
 	$variables = array (
 		'saludo' => variable_get('saludo', 'Hola Mundo!'),
 		'fecha' => date('h:i:s', $fecha),
-		'usuario' => $user,
+		'usuario' => $usuario,
 	);
 	return theme('saludar_hola_mundo', $variables);
 }
