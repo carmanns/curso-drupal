@@ -4,8 +4,8 @@
 	<div class="username">
 		<b>
 			<?php
-			if (isset($usuario->field_nombre)) {
-				print "Hasta pronto, " . render($usuario->field_nombre['und'][0]['value']) . "!";
+			if (isset($user->mail)) {
+				print "Hasta pronto, " . render($user->mail) . "!";
 			}
 			?>
 		</b>
