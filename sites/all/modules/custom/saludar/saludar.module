@@ -23,7 +23,7 @@ function saludar_menu() {
 		'page arguments' => array('saluda_config_form'),
 		'access arguments' => array('administer site configuration'),
 	);
- return $items;
+  return $items;
 }
 
 /**
