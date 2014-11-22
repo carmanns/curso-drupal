@@ -4,9 +4,12 @@
 	<div class="username">
 		<b>
 			<?php
-			if (isset($usuario->field_nombre)) {
-				print "Hasta pronto, " . render($usuario->field_nombre['und'][0]['value']) . "!";
+			$saludar = "¿qué tal";
+			if (!empty($usuario->field_nombre['und'][0]['value'])) {
+				$saludar.= ", " . render($usuario->field_nombre['und'][0]['value']);
 			}
+			$saludar .= "?";
+			print $saludar;
 			?>
 		</b>
 	</div>
