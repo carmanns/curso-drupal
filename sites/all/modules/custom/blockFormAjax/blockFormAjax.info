@@ -1,0 +1,5 @@
+name = Block Form Ajax Submit
+description = "Módulo Block Form Ajax Submit"
+package = Aprendiendo a programar con Drupal
+core = 7.x
+files[] = demo.module
