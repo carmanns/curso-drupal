@@ -14,7 +14,7 @@ drupal_add_css(drupal_get_path('module', 'saludar') . '/css/saludar.css', array(
 			<span class="cajaCentradaBloque">
 				<span class="interiorCajaCentradaBloque">
 					<span class="textoCajaCentradaBloque">
-						<!--<img alt="" src="/sites/default/files/styles/mini-thumbnail/public/pictures/picture-5-1416173537.png"/>-->
+						<img alt="" src="/sites/default/files/styles/mini-thumbnail/public/pictures/picture-5-1416173537.png"/>
 						<?php
 						if (!empty($usuario->picture->uri)) {
 							print $foto;

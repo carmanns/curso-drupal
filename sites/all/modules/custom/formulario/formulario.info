@@ -1,0 +1,4 @@
+name = "Formulario"
+description = "Ejemplo de formulario sencillo"
+core = 7.x
+package = Aprendiendo a programar con Drupal

@@ -2,7 +2,8 @@
 
 /**
  * @file
- * blockFormAjax module, Block Ajax form submit (Ajax framework).
+ * Aprendiendo a programar con Drupal
+ * Modulo de ejemplo de un bloque con formulario Ajax
  */
 
  /**
