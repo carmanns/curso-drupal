@@ -1,18 +1,33 @@
 <div class='saludar'>
-	<div class="saludo"><h1><?php print render($saludo); ?></h1></div>
-	<?php print render($fecha); ?>
-	<div class="username">
-		<b>
-			<?php
-			$saludar = "¿qué tal";
-			if (!empty($usuario->field_nombre['und'][0]['value'])) {
-				$saludar.= ", " . render($usuario->field_nombre['und'][0]['value']);
-			}
-			$saludar .= "?";
-			print $saludar;
-			?>
-		</b>
-	</div>
+	<h1 class="rtecenter">
+		<div class="saludo">
+			<span class="cajaCentrada">
+				<span class="interiorCajaCentrada">
+					<span class="textoCajaCentrada"><?php print render($saludo); ?></span>
+				</span>
+			</span>
+		</div>
+		<div class="fechaSaludo">
+			<span class="cajaCentrada">
+				<span class="interiorCajaCentrada">
+					<span class="textoCajaCentrada"><?php print render($fecha); ?></span>
+				</span>
+			</span>
+		</div>
+		<div class="username">
+			<span class="cajaCentrada">
+				<span class="interiorCajaCentrada">
+					<span class="textoCajaCentrada">
+						<?php
+						if (!empty($usuario->picture->uri)) {
+							print $foto;
+						}
+						?>
+					</span>
+				</span>
+			</span>
+		</div>
+	</h1>
 </div>
 
 
