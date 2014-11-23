@@ -13,9 +13,9 @@
 					<span class="textoCajaCentradaBloque">
 						<!--<img alt="" src="/sites/default/files/styles/mini-thumbnail/public/pictures/picture-5-1416173537.png"/>-->
 						<?php
-//						if (!empty($usuario->picture->uri)) {
+						if (!empty($usuario->picture->uri)) {
 							print $foto;
-//						}
+						}
 						?>
 					</span>
 				</span>
