@@ -1,5 +1,8 @@
+<?php
+drupal_add_css(drupal_get_path('module', 'saludar') . '/css/saludar.css', array('group' => CSS_DEFAULT, 'every_page' => FALSE));
+?>
 <div class='saludar'>
-	<h3 class="rtecenter">
+	<h1 class="rtecenter">
 		<div class="saludo">
 			<span class="cajaCentradaBloque">
 				<span class="interiorCajaCentradaBloque">
@@ -21,7 +24,7 @@
 				</span>
 			</span>
 		</div>
-	</h3>
+	</h1>
 </div>
 
 

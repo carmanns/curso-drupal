@@ -1,3 +1,6 @@
+<?php
+drupal_add_css(drupal_get_path('module', 'saludar') . '/css/saludar.css', array('group' => CSS_DEFAULT, 'every_page' => FALSE));
+?>
 <div class='saludar'>
 	<h1 class="rtecenter">
 		<div class="saludo">
