@@ -68,18 +68,6 @@ function saludar_theme() {
   return $templates;
 }
 
-/**
- * Implements hook_block_info().
- */
-function saludar_block_info() {
-  $blocks['hola_mundo'] = array(
-    'info' => 'Bloque para Hola Mundo',
-    'status' => TRUE,
-    'region' => 'sidebar_first',
-    'visibility'=> BLOCK_VISIBILITY_LISTED,
-  );
-  return $blocks;
-}
 
 
 
