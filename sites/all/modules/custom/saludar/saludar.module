@@ -20,28 +20,3 @@ function saludar_menu() {
   return $items;
 }
 
-/**
- * Function Controller saludar_hola_mundo
- */
-function saludar_pagina_hola_mundo() {
-	$fecha = time();
-	global $user;
-	$usuario = user_load($user->uid);
-	$foto = "";
-	if ($user->uid) {
-		$foto = theme('image_style', array('style_name' => 'thumbnail', 'path' => $usuario->picture->uri));
-	}
-	
-	$variables = array (
-		'saludo' => variable_get('saludo', 'Hola Mundo!'),
-		'fecha' => date('h:i:s', $fecha),
-		'usuario' => $usuario,
-		'foto' => $foto,
-	);
-	return theme('saludar_hola_mundo_pagina', $variables);
-}
-
-
-
-
-
