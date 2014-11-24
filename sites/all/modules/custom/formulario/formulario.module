@@ -75,7 +75,7 @@ function formulario_basico_validate($form, &$form_state) {
   $fecha_nacimiento = $form_state['values']['fecha_nacimiento'];
 	$limite_inferior = date('Y') - 100;
 	$limite_superior = date('Y');
-  if ($fecha_nacimiento && ($fecha_nacimiento <= $limite_inferior || $fecha_nacimiento >= $limite_superior)) {
+  if (empty($fecha_nacimiento) || ($fecha_nacimiento <= $limite_inferior || $fecha_nacimiento >= $limite_superior)) {
     form_set_error('fecha_nacimiento', t('Indica un año entre '.$limite_inferior.' y '.$limite_superior));
   }
 }
