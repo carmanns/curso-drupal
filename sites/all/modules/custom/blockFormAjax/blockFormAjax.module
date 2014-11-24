@@ -21,3 +21,52 @@ function blockFormAjax_menu() {
   
   return $items;
 }
+
+ /**
+  * Implements hook_form().
+  *
+  * Formulario simple de suscripción
+  */
+function blockFormAjax_form($form, &$form_state) {
+
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Nombre Completo',
+    '#size' => 20,
+    '#attributes' => array(
+      'placeholder' => 'Nombre Apellido1 Apellido2',
+    ),
+    '#weight' => 1,
+    //'#value' => t('valor inicial'),
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Tu email',
+    '#size' => 20,
+    '#attributes' => array(
+      'placeholder' => 'mail@example.com',
+    ),
+    '#weight' => 2,
+    //'#value' => t('valor inicial'),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Suscribir'),
+    '#ajax' => array(
+      'callback' => 'blockFormAjax_form_submit',
+      'wrapper' => 'resultado_wrapper',
+      'method' => 'replace',
+      'effect' => 'fade',
+    ),
+    '#weight' => 3,
+  );
+  $form['resultado'] = array (
+    '#markup' => '',
+    '#prefix' => '<div id="resultado_wrapper">',
+    '#suffix' => '</div>',
+    '#weight' => 0,
+  );
+
+  return $form;
+}
