@@ -119,25 +119,3 @@ function blockFormAjax_form_validation($form, &$form_state) {
 
   return $valido;
 }
-
-/**
- * Ajax callback function.
- */
-function blockFormAjax_form_submit($form, &$form_state) {
-  $retorno = '<div id="resultado_wrapper"></div>';
-  
-  $valido = blockFormAjax_form_validation($form, $form_state);
-  
-  if ($valido) {
-    //$retorno = '<div id="resultado_wrapper">Subscribed!</div>';
-		$errores = drupal_get_messages('status'); // Esta función también elimina los errores
-    drupal_set_message('Gracias por suscribirte!', 'status');
-    // rebuild the form after submitted successfully
-    $form_state['rebuild'] = TRUE;
-    // try this if you want to reset the form item values
-    $form_state['input'] = array();
-    $form_state['values'] = array();
-  }
-  
-  return $retorno;
-}
