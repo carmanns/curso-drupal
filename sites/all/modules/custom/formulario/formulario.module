@@ -80,19 +80,5 @@ function formulario_basico_validate($form, &$form_state) {
   }
 }
 
-/**
- * Submit function for formulario_basico().
- */
-function formulario_basico_submit($form, &$form_state) {
-  drupal_set_message(t('El formulario ha sido enviado correctamente. nombre="@first @last", Año de nacimiento=@fecha_nacimiento',
-    array(
-      '@first' => $form_state['values']['nombre'],
-      '@last' => $form_state['values']['apellidos'],
-      '@fecha_nacimiento' => $form_state['values']['fecha_nacimiento'],
-    )
-  ));
-}
-
-
 
 
