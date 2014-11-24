@@ -1,8 +1,7 @@
 /* 
-    Created on : 23-nov-2014, 8:49:07
-    Author     : carlos
+	Created on : 23-nov-2014, 8:49:07
+	Author     : carlos
 */
-
 
 .cajaCentrada{
 	color:#336699;
@@ -14,6 +13,8 @@
 
 .textoCajaCentrada{
 	font-family:verdana,geneva,sans-serif;
+	height: auto;
+	overflow: auto;
 }
 
 
@@ -27,4 +28,6 @@
 
 .textoCajaCentradaBloque{
 	font-family:verdana,geneva,sans-serif;
+	height: auto;
+	overflow: auto;
 }
