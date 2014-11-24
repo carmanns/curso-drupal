@@ -81,16 +81,5 @@ function saludar_block_info() {
   return $blocks;
 }
 
-/**
- * Implementa hook_block_view().
- * Retorna una vista renderizada de un bloque.
- */
-function saludar_block_view($delta = '' ) {
-  switch ($delta) {
-    case 'hola_mundo':
-      $block['content'] = saludar_bloque_hola_mundo();
-      return $block;
-  }
-}
 
 
