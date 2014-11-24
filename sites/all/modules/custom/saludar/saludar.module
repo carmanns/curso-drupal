@@ -10,13 +10,6 @@
  * Implements hook_menu().
  */
 function saludar_menu() {
-	// Ruta de la página de saludo.
-	$items['saludar/hola-mundo'] = array (
-		 'title' => 'Saludar',
-		 'page callback' => 'saludar_pagina_hola_mundo', //Función a ejecutar
-		 'access callback' => TRUE, // Acceso libre
-	);
 
-  return $items;
 }
 
