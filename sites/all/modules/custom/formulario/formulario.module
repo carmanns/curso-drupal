@@ -7,17 +7,5 @@
  */
 
 function formulario_menu() {
-  $items = array();
-  $items['formulario-basico'] = array(
-    'title' => 'Formulario Básico',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('formulario_basico'),
-    'access callback' => TRUE,
-    'description' => 'Formulario con validador y submit',
-//    'type' => MENU_LOCAL_TASK,
-  );
 
-  return $items;
 }
-
-
