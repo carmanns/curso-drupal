@@ -99,15 +99,12 @@ function saludar_block_view($delta = '' ) {
  */
 function saludar_bloque_hola_mundo() {
 	global $user;
+	$fecha = time();
 	$usuario = user_load($user->uid);
-	$foto = "";
-	if ($user->uid) {
-		$foto = theme('image_style', array('style_name' => 'mini-thumbnail', 'path' => $usuario->picture->uri));
-	}
 	$variables = array (
 		'saludo' => variable_get('saludo', 'Hola Mundo!'),
 		'usuario' => $usuario,
-		'foto' => $foto,
+		'fecha' => date('h:i:s', $fecha),
 	);
 	return theme('saludar_hola_mundo_block', $variables);
 }
