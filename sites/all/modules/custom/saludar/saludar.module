@@ -41,12 +41,6 @@ function saludar_pagina_hola_mundo() {
 	return theme('saludar_hola_mundo_pagina', $variables);
 }
 
-function saludar_theme() {
-  $templates = array (
-		'saludar_hola_mundo_pagina' => array('template' => 'templates/saludar-hola-mundo',),
-  );
-  return $templates;
-}
 
 
 
