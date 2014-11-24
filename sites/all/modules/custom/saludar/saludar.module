@@ -64,7 +64,6 @@ function saludar_config_form() {
 function saludar_theme() {
   $templates = array (
 		'saludar_hola_mundo_pagina' => array('template' => 'templates/saludar-hola-mundo',),
-		'saludar_hola_mundo_block' => array('template' => 'templates/block--block--hola-mundo',),
   );
   return $templates;
 }
