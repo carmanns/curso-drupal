@@ -141,29 +141,3 @@ function blockFormAjax_form_submit($form, &$form_state) {
   
   return $retorno;
 }
-
-/**
- * Implements hook_block_info().
- */
-function blockFormAjax_block_info() {
-  $blocks['suscriptor'] = array(
-    'info' => 'Bloque para Suscripciones',
-    'status' => TRUE,
-    'region' => 'sidebar_first',
-//    'visibility'=> BLOCK_VISIBILITY_LISTED,
-//    'pages' => 'node/*',
-  );
-  return $blocks;
-}
-
-/**
- * Implementa hook_block_view().
- * Retorna una vista renderizada de un bloque.
- */
-function blockFormAjax_block_view($delta = '' ) {
-  switch ($delta) {
-    case 'suscriptor':
-      $block['content'] = drupal_get_form('blockFormAjax_form');
-      return $block;   
-  }
-}
