@@ -10,14 +10,5 @@
   * Implements hook_menu().
   */
 function blockFormAjax_menu() {
-  
-  $items = array();
-  $items['blockFormAjax'] = array(
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('blockFormAjax_form'),
-    'access arguments' => array('access content'),
-//    'type' => MENU_CALLBACK,
-  );
-  
-  return $items;
+
 }
