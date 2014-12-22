@@ -2,7 +2,8 @@
 
 /**
  * @file
- * Module file for HOLA MUNDO example.
+ * Aprendiendo a programar con Drupal
+ * Modulo de HOLA MUNDO
  */
 
 /**
@@ -12,7 +13,7 @@ function saludar_menu() {
 	// Ruta de la página de saludo.
 	$items['saludar/hola-mundo'] = array (
 		 'title' => 'Saludar',
-		 'page callback' => 'saludar_hola_mundo', //Función a ejecutar
+		 'page callback' => 'saludar_pagina_hola_mundo', //Función a ejecutar
 		 'access callback' => TRUE, // Acceso libre
 	);
 	// Ruta configuración
@@ -20,33 +21,39 @@ function saludar_menu() {
 		'title' => 'Saluda Config',
 		'description' => 'Opciones saludo',
 		'page callback' => 'drupal_get_form',
-		'page arguments' => array('saluda_config_form'),
+		'page arguments' => array('saludar_config_form'),
 		'access arguments' => array('administer site configuration'),
 	);
- return $items;
+  return $items;
 }
 
 /**
  * Function Controller saludar_hola_mundo
  */
-function saludar_hola_mundo() {
+function saludar_pagina_hola_mundo() {
+	$fecha = time();
 	global $user;
 	$usuario = user_load($user->uid);
-	$fecha = time();
+	$foto = "";
+	if ($user->uid) {
+		$foto = theme('image_style', array('style_name' => 'thumbnail', 'path' => $usuario->picture->uri));
+	}
+	
 	$variables = array (
 		'saludo' => variable_get('saludo', 'Hola Mundo!'),
 		'fecha' => date('h:i:s', $fecha),
 		'usuario' => $usuario,
+		'foto' => $foto,
 	);
-	return theme('saludar_hola_mundo', $variables);
+	return theme('saludar_hola_mundo_pagina', $variables);
 }
 
 /**
  * Function Controller Configuration
  */
-function saluda_config_form() {  
+function saludar_config_form() {
   $form['saludo'] = array (
-    '#title' => 'Saludo que se muestra al usuario',  
+    '#title' => 'Saludo que se muestra al usuario',
     '#type' => 'textfield',
     '#default_value' => variable_get('saludo', 'Hola Mundo!'),
     '#required' => TRUE,
@@ -56,7 +63,48 @@ function saluda_config_form() {
 
 function saludar_theme() {
   $templates = array (
-		'saludar_hola_mundo' => array('template' => 'templates/saludar-hola-mundo',),
+		'saludar_hola_mundo_pagina' => array('template' => 'templates/saludar-hola-mundo',),
+		'saludar_hola_mundo_block' => array('template' => 'templates/block--block--hola-mundo',),
   );
   return $templates;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function saludar_block_info() {
+  $blocks['hola_mundo'] = array(
+    'info' => 'Bloque para Hola Mundo',
+    'status' => TRUE,
+    'region' => 'sidebar_first',
+    'visibility'=> BLOCK_VISIBILITY_LISTED,
+  );
+  return $blocks;
+}
+
+/**
+ * Implementa hook_block_view().
+ * Retorna una vista renderizada de un bloque.
+ */
+function saludar_block_view($delta = '' ) {
+  switch ($delta) {
+    case 'hola_mundo':
+      $block['content'] = saludar_bloque_hola_mundo();
+      return $block;
+  }
+}
+
+/**
+ * Function Controller saludar_hola_mundo block
+ */
+function saludar_bloque_hola_mundo() {
+	global $user;
+	$fecha = time();
+	$usuario = user_load($user->uid);
+	$variables = array (
+		'saludo' => variable_get('saludo', 'Hola Mundo!'),
+		'usuario' => $usuario,
+		'fecha' => date('h:i:s', $fecha),
+	);
+	return theme('saludar_hola_mundo_block', $variables);
 }

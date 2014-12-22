@@ -1,0 +1,169 @@
+<?php
+
+/**
+ * @file
+ * Aprendiendo a programar con Drupal
+ * Modulo de ejemplo de un bloque con formulario Ajax
+ */
+
+ /**
+  * Implements hook_menu().
+  */
+function blockFormAjax_menu() {
+  
+  $items = array();
+  $items['blockFormAjax'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('blockFormAjax_form'),
+    'access arguments' => array('access content'),
+//    'type' => MENU_CALLBACK,
+  );
+  
+  return $items;
+}
+
+ /**
+  * Implements hook_form().
+  *
+  * Formulario simple de suscripción
+  */
+function blockFormAjax_form($form, &$form_state) {
+ 
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Nombre Completo',
+    '#size' => 20,
+    '#attributes' => array(
+      'placeholder' => 'Nombre Apellido1 Apellido2',
+    ),
+    '#weight' => 1,
+    //'#value' => t('valor inicial'),
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Tu email',
+    '#size' => 20,
+    '#attributes' => array(
+      'placeholder' => 'mail@example.com',
+    ),
+    '#weight' => 2,
+    //'#value' => t('valor inicial'),
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Suscribir'),
+    '#ajax' => array(
+      'callback' => 'blockFormAjax_form_submit',
+      'wrapper' => 'resultado_wrapper',
+      'method' => 'replace',
+      'effect' => 'fade',
+    ),
+    '#weight' => 3,
+  );
+  $form['resultado'] = array (
+    '#markup' => '',
+    '#prefix' => '<div id="resultado_wrapper">',
+    '#suffix' => '</div>',
+    '#weight' => 0,
+  );
+
+  return $form;
+}
+
+function blockFormAjax_form_validation($form, &$form_state) {
+  $valido = true;
+
+	if (!$form_state['rebuild']) {
+		// Nombre --------------------------------------------------------------------
+		$nombre = $form_state['values']['name'];
+
+		if (!empty($nombre)) {
+			// Validar formato email
+			$valid_name = preg_match('/^[A-Za-záéíóúñ]{2,}([\s][A-Za-záéíóúñ]{2,})([\s][A-Za-záéíóúñ]{2,})+$/', $nombre);
+			if (!$valid_name) {
+				// Nombre no valido
+				$valido = false;
+				form_error($form['name'], 'El nombre <strong>'.$nombre.'</strong> no es válido.');
+			}
+		}
+		else {
+			// Validar campo nombre vacío
+			$valido = false;
+			form_error($form['name'], 'The field <strong>'.$form['name']['#title'].'</strong> is required.');
+			$retorno = $form;
+		}
+
+		// Email ---------------------------------------------------------------------
+		$email = $form_state['values']['email'];
+
+		if (!empty($email)) {
+			// Validar formato email
+			$valid_email = valid_email_address($email);
+			if (!$valid_email) {
+				// Email no válido
+				$valido = false;
+				form_error($form['email'], 'El e-mail <strong>'.$email.'</strong> no es válido.');
+			}
+		}
+		else {
+			// Validar campo email vacío
+			$valido = false;
+			form_error($form['email'], 'The field <strong>'.$form['email']['#title'].'</strong> is required.');
+		}
+
+		if ($valido) {
+			$errores = drupal_get_messages('error'); // Esta función también elimina los errores
+		}
+	}
+
+  return $valido;
+}
+
+/**
+ * Ajax callback function.
+ */
+function blockFormAjax_form_submit($form, &$form_state) {
+  $retorno = '<div id="resultado_wrapper"></div>';
+  
+  $valido = blockFormAjax_form_validation($form, $form_state);
+  
+  if ($valido) {
+    //$retorno = '<div id="resultado_wrapper">Subscribed!</div>';
+		$errores = drupal_get_messages('status'); // Esta función también elimina los errores
+    drupal_set_message('Gracias por suscribirte!', 'status');
+    // rebuild the form after submitted successfully
+    $form_state['rebuild'] = TRUE;
+    // try this if you want to reset the form item values
+    $form_state['input'] = array();
+    $form_state['values'] = array();
+  }
+  
+  return $retorno;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function blockFormAjax_block_info() {
+  $blocks['suscriptor'] = array(
+    'info' => 'Bloque para Suscripciones',
+    'status' => TRUE,
+    'region' => 'sidebar_first',
+//    'visibility'=> BLOCK_VISIBILITY_LISTED,
+//    'pages' => 'node/*',
+  );
+  return $blocks;
+}
+
+/**
+ * Implementa hook_block_view().
+ * Retorna una vista renderizada de un bloque.
+ */
+function blockFormAjax_block_view($delta = '' ) {
+  switch ($delta) {
+    case 'suscriptor':
+      $block['content'] = drupal_get_form('blockFormAjax_form');
+      return $block;   
+  }
+}

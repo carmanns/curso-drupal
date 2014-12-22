@@ -1,0 +1,38 @@
+/* 
+	Created on : 23-nov-2014, 8:49:07
+	Author     : carlos
+*/
+
+.cajaCentrada{
+	color:#336699;
+}
+
+.interiorCajaCentrada{
+	font-size:36px;
+}
+
+.textoCajaCentrada{
+	font-family:verdana,geneva,sans-serif;
+}
+
+.textoCajaCentrada img{
+	height: auto;
+	overflow: auto;
+}
+
+.cajaCentradaBloque{
+	color:#336699;
+}
+
+.interiorCajaCentradaBloque{
+	font-size:18px;
+}
+
+.textoCajaCentradaBloque{
+	font-family:verdana,geneva,sans-serif;
+}
+
+.textoCajaCentradaBloque img {
+	height: auto;
+	overflow: auto;
+}
